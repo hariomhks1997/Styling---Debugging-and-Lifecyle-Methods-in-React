@@ -1,4 +1,4 @@
-import React,{useState} from 'react';
+import React,{useState,Fragment} from 'react';
 import './App.css';
 import AddUser from './components/Users/AddUser';
 import UserList from './components/Users/UserList';
@@ -10,10 +10,10 @@ const App = () => {
     })
   }
 return (
-    <div>
+    <Fragment>
      <AddUser onAddUser={adduserhandler}></AddUser> 
      <UserList users={userList}></UserList>
-    </div>
+    </Fragment>
   );
 };
 export default App;
