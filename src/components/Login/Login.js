@@ -13,10 +13,10 @@ const emailReducer=(state,action)=>{
   return {value:'',isValid:false};
 };
 const passwordReducer=(state,action)=>{
-  if(action.type==='USER_PUR'){
+  if(action.type==='USER_BLUR'){
     return {value:action.val,isValid:action.val.trim().length>6}
   }
-  if (action.type==='INPUT_PUR'){
+  if (action.type==='INPUT_BLUR'){
     return {value:state.value, isValid:state.value.trim().length>6}
   }
   return {value:'',isValid:false};
@@ -63,15 +63,15 @@ const Login = (props) => {
   const emailChangeHandler = (event) => {
     dispatchEmail({type:'USER_INPUT',val:event.target.value});
   setFormIsValid(
-    event.target.value.includes('@') && passwordState.value.trim().length>6
+    event.target.value.includes('@') && passwordState.isValid
   )
     
   };
 
   const passwordChangeHandler = (event) => {
-    dispatchPassword({type:'USER_PUR',val:event.target.value});
+    dispatchPassword({type:'USER_BLUR',val:event.target.value});
     setFormIsValid(
-       event.target.value.trim().length>6 && emailState.value.includes('@')
+       event.target.value.trim().length>6 && emailState.isValid
     )
     
 
@@ -84,7 +84,7 @@ const Login = (props) => {
   };
 
   const validatePasswordHandler = () => {
-    dispatchPassword({type:'INPUT_PUR'});
+    dispatchPassword({type:'INPUT_BLUR'});
   };
 
   const submitHandler = (event) => {
